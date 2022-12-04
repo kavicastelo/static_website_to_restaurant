@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Infinity | Dash Board</title>
+</head>
+<link type="text/css" rel="stylesheet" href="./css/dash_board.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<body onload="initializeItems()">
+
+<!--main div area-->
+<div class="main-outer">
+    <div class="round top-round-1"></div>
+    <div class="round top-round-2"></div>
+    <div class="round bottom-round-1"></div>
+    <div class="round bottom-round-2"></div>
+<!--    /*dash board-outer*/-->
+    <div class="outer">
+        <div class="nav-bar">
+            <div class="nav-space"></div>
+            <div class="nav-buttons">
+                <ul>
+                    <li>
+                        <button id="btn-ala-carte" class="nav-btn ala-carte">Ala carte</button>
+                    </li>
+                    <li>
+                        <button id="btn-meals" class="nav-btn">Meals</button>
+                    </li>
+                    <li>
+                        <button id="btn-beverages" class="nav-btn beverage">Beverages</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="inner">
+
+            <div class="play-area">
+                <div class="left box">
+                    <div class="items-are">
+                        <table class="table table-hover">
+                            <tbody id="order-items-tbl">
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="process-area">
+                        <div class="process-top">
+                            <div class="process-taking-time">
+                                <h3><span class="min">00</span> : <span class="sec">00</span></h3>
+                            </div>
+                            <div style="margin: 5px"></div>
+                            <div class="process-total">
+                                <h5><span id="process-total">0</span> USD</h5>
+                            </div>
+                        </div>
+                        <div class="process-bottom">
+                            <button class="btn btn-primary" style="height: 100%; width: 100%;" onclick="makeOrder()">Place Order</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="middle box">
+
+                    <div id="order-buttons" class="number-buttons sticky-top">
+                        <div class="numbers">
+                            <button onclick="manageCount('0')" class="btn btn-primary">0</button>
+                            <button onclick="manageCount('1')" class="btn btn-primary">1</button>
+                            <button onclick="manageCount('2')" class="btn btn-primary">2</button>
+                            <button onclick="manageCount('3')" class="btn btn-primary">3</button>
+                            <button onclick="manageCount('4')" class="btn btn-primary">4</button>
+                            <button onclick="manageCount('5')" class="btn btn-primary">5</button>
+                            <button onclick="manageCount('6')" class="btn btn-primary">6</button>
+                            <button onclick="manageCount('7')" class="btn btn-primary">7</button>
+                            <button onclick="manageCount('8')" class="btn btn-primary">8</button>
+                            <button onclick="manageCount('9')" class="btn btn-primary">9</button>
+                            <button onclick="resetQuantity()" class="btn btn-dark">&circlearrowleft;</button>
+                            <button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#mainModal">&complexes;</button>
+                        </div>
+                        <div class="count">
+                            <p class="count-txt"></p>
+                        </div>
+                    </div>
+                    <div class="area">
+
+                    </div>
+
+                </div>
+                <div class="right box">
+                    <div class="cookingOrderTbl">
+                        <table class="table table-hover">
+                            <tbody id="placed_orders">
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="holdOrderTbl">
+                        <p>Hold Orders</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--    /*dash board-outer*/-->
+    </div>
+    <!--main div area-->
+    </div>
+
+<!--model area-->
+<!--main model-->
+<div class="modal fade" id="mainModal" tabindex="-1" aria-labelledby="mainModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="mainModalLabel">Widgets</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <button style="width: 100%; margin-bottom: 15px" class="btn btn-outline-primary" onclick="viewOrders()">Show Orders</button>
+                <button style="width: 100%" class="btn btn-outline-success" onclick="loadChart()">Show Improvements</button>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--main model-->
+
+<!--orders model-->
+<button style="display: none" id="ordersModelBtn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ordersModal"></button>
+<div class="modal fade" id="ordersModal" tabindex="-1" aria-labelledby="ordersModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="ordersModalLabel">Orders</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table id="orders-tbl" class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Date</th>
+                        <th>Total</th>
+                    </tr>
+                    </thead>
+                    <tbody id="orders-t-body">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="printData()">Print</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--orders model-->
+
+<!--order details modal-->
+<button style="display: none" id="order-details-modal-button" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#order-details-modal">
+
+</button>
+<div class="modal fade" id="order-details-modal" tabindex="-1" aria-labelledby="order-details-modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="order-details-modalLabel">Order Details</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-hover">
+                    <tbody id="order-details-t-body">
+                    <tr>
+                        <td>Order id</td>
+                        <td id="id"></td>
+                    </tr>
+                    <tr>
+                        <td>Order Date</td>
+                        <td id="orderDate"></td>
+                    </tr>
+                    <tr>
+                        <td>Taking Time</td>
+                        <td id="takingTime"></td>
+                    </tr>
+                    <tr>
+                        <td>Placed Time</td>
+                        <td id="placedTime"></td>
+                    </tr>
+                    <tr>
+                        <td>Total</td>
+                        <td id="totalCost"></td>
+                    </tr>
+                    <tr>
+                        <td>Presented Time</td>
+                        <td id="presentedTime"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <hr>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </tr>
+                    </thead>
+                    <tbody id="order-details">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button onclick="printData();" type="button" class="btn btn-primary">Print</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--order details model-->
+
+<!--chart modal-->
+<button style="display: none" id="chartModelBtn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chartModal"></button>
+<div class="modal fade" id="chartModal" tabindex="-1" aria-labelledby="chartModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="chartModalLabel">Orders</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="chart-outer" id="chart"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="printData()">Print</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--chart model-->
+
+<!--model area -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!--canvasjs-->
+<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+<!--canvasjs-->
+<script src="./js/dash_board.js"></script>
+</body>
+</html>

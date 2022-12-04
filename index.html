@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Infinity | Login</title>
+    <link rel="stylesheet" href="./css/login.css">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+</head>
+<body>
+<!--main div area-->
+<div class="main-outer">
+    <div class="round top-round-1"></div>
+    <div class="round top-round-2"></div>
+    <div class="round bottom-round-1"></div>
+    <div class="round bottom-round-2"></div>
+
+    <!--    login-outer-->
+    <div class="inner">
+<!--        left-side-area-->
+        <div class="left context">
+            <div class="data-wrapper">
+                <p class="welcome-text">WELCOME TO</p>
+                <div class="logo-name-outer">
+                    <img src="./images/infinity-red.png" alt="logo">
+                    <h1>INFINITY</h1>
+                </div>
+                <p class="description" style="color: #828282">
+                    We are sharing a great free material design login page UI for you. </p>
+                <div class="login-component-outer">
+                    <div class="row" style="margin: 0; padding: 0 20px">
+                        <div class="col-12">
+                            <input type="text" name="" id="username" placeholder="Username" class="form-control"
+                                   style="border-radius: 50px 50px 50px 50px;">
+                        </div>
+                        <div class="col-12">
+                            <input type="password" name="" id="password" placeholder="Password" class="form-control"
+                                   style="border-radius: 50px 50px 50px 50px;">
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary" onclick="login()"
+                                    style="border-radius: 50px 50px 50px 50px;">Sign In</button>
+                        </div>
+                        <div class="col-12">
+                            <div class="bottom-data" style="margin-top: 5px">
+                                <p class="don't-text">Don't have an Account?</p>
+                                <p class="signUp-text"><a href="./signUp.html">Sign Up here</a></p>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="separate-outer">
+                                <div class="line"></div>
+                                <p>OR</p>
+                                <div class="line"></div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="social-media-text">
+                                <p>Continue with social media</p>
+                            </div>
+                            <div class="social-media">
+                                <div class="btn-social" id="fb">
+                                    <img src="./images/fbicon.jpg" alt="fb">
+                                    <!--cannot implement this without angular project-->
+                                </div>
+                                <div class="btn-social" id="twitter">
+                                    <img src="./images/twittericon.png" alt="tw">
+                                    <!--cannot implement this without angular project-->
+                                </div>
+                                <div class="btn-social" id="google">
+                                    <img src="./images/googleicon.png" alt="g">
+                                    <!--cannot implement this without angular project-->
+                                </div>
+                                <div class="btn-social" id="linkedin">
+                                    <img src="./images/linkedinicon.png" alt="l">
+                                    <!--cannot implement this without angular project-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--        left-side-area-->
+<!--        right-side-area-->
+        <div class="right context">
+            <div class="shadow"></div>
+            <div class="data">
+                <div class="logo">
+                    <img src="./images/infinity.png" alt="logo"/>
+                </div>
+                <h1 class="title">INFINITY</h1>
+                <p class="description">We are sharing a great free material design login page UI for you. Awesome colors
+                    on this free material design login page UI, design by Afsal Rahiman.</p>
+                <div class="bottom-data">
+                    <p class="from">From : Kavindu Kokila Gayashan</p>
+                    <p class="version">Version : 1.0.0</p>
+                </div>
+            </div>
+        </div>
+<!--        right-side-area-->
+    </div>
+    <!--    login-outer-->
+</div>
+<!--main div area-->
+
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="./js/login.js"></script>
+</body>
+</html>
